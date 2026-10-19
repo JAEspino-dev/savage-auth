@@ -6,6 +6,7 @@ const express  = require('express');
 const app      = express();
 const port     = process.env.PORT || 8000;
 const MongoClient = require('mongodb').MongoClient
+const { ObjectID } = require('mongodb');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash    = require('connect-flash');
@@ -23,7 +24,7 @@ let db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db);
+  require('./app/routes.js')(app, passport, db, ObjectID);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration

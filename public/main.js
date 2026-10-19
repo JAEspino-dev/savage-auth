@@ -4,6 +4,8 @@ let trashIcon = document.getElementsByClassName("fa-trash");
 
 Array.from(thumbUpIcon).forEach(function (element) {
   element.addEventListener('click', function () {
+    const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
+    console.log(dataSetID)
     const name = this.parentNode.parentNode.childNodes[1].innerText
     const msg = this.parentNode.parentNode.childNodes[3].innerText
     const counter = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
@@ -13,7 +15,8 @@ Array.from(thumbUpIcon).forEach(function (element) {
       body: JSON.stringify({
         'name': name,
         'msg': msg,
-        'counter': counter
+        'counter': counter,
+        'quoteID': dataSetID
       })
     })
       .then(response => {
@@ -21,6 +24,7 @@ Array.from(thumbUpIcon).forEach(function (element) {
       })
       .then(data => {
         console.log(data)
+        // Use DOM to .removeChild
         window.location.reload(true)
       })
   });
@@ -28,6 +32,7 @@ Array.from(thumbUpIcon).forEach(function (element) {
 
 Array.from(thumbdDownIcon).forEach(function (element) {
   element.addEventListener('click', function () {
+    const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
     const name = this.parentNode.parentNode.childNodes[1].innerText
     const msg = this.parentNode.parentNode.childNodes[3].innerText
     const counter = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
@@ -37,7 +42,8 @@ Array.from(thumbdDownIcon).forEach(function (element) {
       body: JSON.stringify({
         'name': name,
         'msg': msg,
-        'counter': counter
+        'counter': counter,
+        'quoteID': dataSetID
       })
     })
       .then(response => {
@@ -52,16 +58,18 @@ Array.from(thumbdDownIcon).forEach(function (element) {
 
 Array.from(trashIcon).forEach(function (element) {
   element.addEventListener('click', function () {
+    const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
     const name = this.parentNode.parentNode.childNodes[1].innerText
     const msg = this.parentNode.parentNode.childNodes[3].innerText
-    fetch('messages', {
+    fetch('deleteQuote', {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         'name': name,
-        'msg': msg
+        'msg': msg,
+        'quoteID': dataSetID
       })
     }).then(function (response) {
       window.location.reload()
