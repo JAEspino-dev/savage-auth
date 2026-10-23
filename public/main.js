@@ -6,15 +6,15 @@ Array.from(thumbUpIcon).forEach(function (element) {
   element.addEventListener('click', function () {
     const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
     console.log(dataSetID)
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
+    // const name = this.parentNode.parentNode.childNodes[1].innerText
+    // const msg = this.parentNode.parentNode.childNodes[3].innerText
     const counter = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
     fetch('counterIncrease', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        'name': name,
-        'msg': msg,
+        // 'name': name,
+        // 'msg': msg,'
         'counter': counter,
         'quoteID': dataSetID
       })
@@ -59,16 +59,16 @@ Array.from(thumbdDownIcon).forEach(function (element) {
 Array.from(trashIcon).forEach(function (element) {
   element.addEventListener('click', function () {
     const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
+    // const name = this.parentNode.parentNode.childNodes[1].innerText
+    // const msg = this.parentNode.parentNode.childNodes[3].innerText
     fetch('deleteQuote', {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        'name': name,
-        'msg': msg,
+        // 'name': name,
+        // 'msg': msg,
         'quoteID': dataSetID
       })
     }).then(function (response) {
