@@ -10,7 +10,7 @@ Enter a message.
 Post message, and let other users upvote or downvote your message!
 
 # 📷 Images
-![Simple](public/Screenshot.png)
+![Simple](public/img/screenshot.png)
 
 # ✨ Features
 Fully responsive design for desktop and mobile.         
