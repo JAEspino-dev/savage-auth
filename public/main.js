@@ -6,15 +6,11 @@ Array.from(thumbUpIcon).forEach(function (element) {
   element.addEventListener('click', function () {
     const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
     console.log(dataSetID)
-    // const name = this.parentNode.parentNode.childNodes[1].innerText
-    // const msg = this.parentNode.parentNode.childNodes[3].innerText
     const counter = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
     fetch('counterIncrease', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        // 'name': name,
-        // 'msg': msg,'
         'counter': counter,
         'quoteID': dataSetID
       })
@@ -33,15 +29,11 @@ Array.from(thumbUpIcon).forEach(function (element) {
 Array.from(thumbdDownIcon).forEach(function (element) {
   element.addEventListener('click', function () {
     const dataSetID = this.parentNode.parentNode.childNodes[1].dataset.msgId
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
     const counter = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
     fetch('counterDecrease', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        'name': name,
-        'msg': msg,
         'counter': counter,
         'quoteID': dataSetID
       })

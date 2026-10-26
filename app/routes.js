@@ -13,7 +13,7 @@ module.exports = function (app, passport, db, ObjectID) {
       if (err) return console.log(err)
       res.render('profile.ejs', {
         user: req.user,
-        messages: result
+        ArrayOfDocumentsFromMongoDBCollectionMessages: result
       })
     })
   });
@@ -46,8 +46,8 @@ module.exports = function (app, passport, db, ObjectID) {
       .findOneAndUpdate({
         _id: new ObjectID(req.body.quoteID) // this thing is a class, 
       }, {
-        $set: {
-          thumbUp: req.body.counter + 1
+        $inc: {
+          thumbUp: 1
         }
       },
         // .findOneAndUpdate({ name: req.body.name, msg: req.body.msg }, {
